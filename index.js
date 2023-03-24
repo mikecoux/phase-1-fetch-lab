@@ -1,6 +1,23 @@
+//Function to get the total number of book pages in the Ice and Fire series
+function fetchIceAndFire () {
+  let numPages = 0
+  fetch("https://anapioficeandfire.com/api/books")
+    .then((resp) => resp.json())
+    .then((json) => {
+      json.forEach((book) => {
+        //let numPages = 0
+        numPages += book.numberOfPages
+        //console.log(numPages)
+      })
+    })
+  .then(() => console.log(numPages));
+}
+
 function fetchBooks() {
   // To pass the tests, don't forget to return your fetch!
-  
+  return fetch('https://anapioficeandfire.com/api/books')
+    .then((res) => res.json())
+    .then((json) => renderBooks(json))
 }
 
 function renderBooks(books) {
